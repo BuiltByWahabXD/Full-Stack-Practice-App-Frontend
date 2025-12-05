@@ -12,9 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useThemeContext } from '../context/themeContext';
+import MaterialUISwitch from '../components/ThemeSwitch';
 
 const pages = ['Products', 'Pricing'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -127,11 +126,11 @@ function ResponsiveAppBar() {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Tooltip title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
-              <IconButton onClick={toggleTheme} color="inherit">
-                {theme === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-              </IconButton>
-            </Tooltip>
+            <MaterialUISwitch 
+              checked={theme === 'light'} 
+              onChange={toggleTheme}
+              sx={{ m: 1 }}
+            />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

@@ -9,7 +9,6 @@ function AppContent() {
   const { theme } = useThemeContext();
 
   return (
-    // data-theme controls CSS variables in theme.css
     <div className="app-container" data-theme={theme}>
       <BrowserRouter>
         <Routes>

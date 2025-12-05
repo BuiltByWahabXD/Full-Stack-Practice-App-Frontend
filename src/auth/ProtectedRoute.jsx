@@ -14,7 +14,7 @@ export default function ProtectedRoute({ children }) {
   return (
     <>
       <AppBar />
-      <main style={{ paddingTop: 16 }}>
+      <main style={{ paddingTop: 16, color:"darkorange" }}>
         {children}
       </main>
     </>
