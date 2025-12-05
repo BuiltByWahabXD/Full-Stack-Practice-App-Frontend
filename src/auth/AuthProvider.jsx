@@ -37,51 +37,21 @@ export function AuthProvider({ children }) {
       }
 
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/refresh`, {
-          method: "POST",
-          headers: { 
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
-          credentials: "include",
-        });
+
+        const userData = await apiFetch("/api/users/me");
         
-        console.log("Auth check response status:", response.status);
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Auth check data:", data);
-          if (data.success) {
-            setIsAuthenticated(true);
-            localStorage.setItem("isAuthenticated", "true");
-            
-            // Use apiFetch which handles token refresh automatically
-            try {
-              const userData = await apiFetch("/api/users/me");
-              if (userData.success) {
-                setUser(userData.data);
-                console.log("User data loaded:", userData.data);
-              }
-            } catch (error) {
-              console.error("Failed to load user data:", error);
-              // Even if /me fails, we're still authenticated if refresh worked
-              setIsAuthenticated(true);
-              localStorage.setItem("isAuthenticated", "true");
-            }
-          } else {
-            setIsAuthenticated(false);
-            setUser(null);
-            localStorage.removeItem("isAuthenticated");
-          }
+        if (userData.success) {
+          setUser(userData.data);
+          setIsAuthenticated(true);
+          localStorage.setItem("isAuthenticated", "true");
+          console.log("User data loaded:", userData.data);
         } else {
-          // No valid cookies
-          console.log("Auth check failed - no valid cookies");
           setIsAuthenticated(false);
           setUser(null);
           localStorage.removeItem("isAuthenticated");
         }
       } catch (error) {
-        // No valid cookies, user needs to login
+        // If apiFetch fails even after refresh attempt, user needs to login
         console.log("Auth check error:", error);
         setIsAuthenticated(false);
         setUser(null);
