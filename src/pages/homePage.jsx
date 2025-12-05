@@ -21,19 +21,19 @@ const Homepage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h1 className="title">👋 Welcome{user?.name ? `, ${user.name}` : ""}!</h1>
-        <p className="subtitle">You're logged in. This is your homepage.</p>
+    <div className="homepage-container">
+      <div className="homepage-card">
+        <h1 className="homepage-title">👋 Welcome{user?.name ? `, ${user.name}` : ""}!</h1>
+        <p className="homepage-subtitle">You're logged in. This is your homepage.</p>
 
         {user && (
-          <div className="infoBox">
+          <div className="homepage-infoBox">
             <p><strong>Email:</strong> {user.email}</p>
             {user.name && <p><strong>Name:</strong> {user.name}</p>}
           </div>
         )}
 
-        <button className="logoutBtn" onClick={handleLogout}>
+        <button className="homepage-logoutBtn" onClick={handleLogout}>
           Logout
         </button>
       </div>

@@ -5,46 +5,26 @@
   box-sizing: border-box;
 }
 
-/* Theme */
-:root {
-  --bg: #f6f8fb;
-  --card: #ffffff;
-  --muted: #6b7280;
-  --text: #0f172a;
-  --accent: #2563eb;
-  --accent-600: #1d4ed8;
-  --danger: #ef4444;
-  --shadow: 0 10px 30px rgba(12,20,35,0.08);
-  --radius: 12px;
-}
-
-/* Page */
-body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  background: var(--bg);
-  color: var(--text);
-}
-
 /* Centering wrapper */
 .login-page {
   min-height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 32px;
+  background: var(--bg-color);
 }
 
 /* Card */
 .login-form {
   width: 100%;
-  margin-left: 600px;
   max-width: 480px;
-  background: var(--card);
-  border-radius: var(--radius);
+  background: var(--card-bg);
+  border-radius: 12px;
   padding: 28px;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(16,24,40,0.04);
+  box-shadow: 0 10px 30px rgba(12,20,35,0.08);
+  border: 1px solid rgba(128,128,128,0.1);
 }
 
 /* Title area */
@@ -59,6 +39,7 @@ body {
   margin: 0;
   font-size: 1.35rem;
   font-weight: 700;
+  color: var(--text-color);
 }
 
 /* Hint text */
@@ -79,9 +60,9 @@ body {
   padding: 12px 14px;
   font-size: 0.95rem;
   border-radius: 10px;
-  border: 1px solid rgba(15,23,42,0.06);
-  background: #ecebeb;
-  color: var(--text);
+  border: 1px solid rgba(128,128,128,0.2);
+  background: var(--card-bg);
+  color: var(--text-color);
   transition: box-shadow .12s ease, border-color .12s ease, transform .06s ease;
   display: block;
 }
@@ -105,6 +86,7 @@ body {
   cursor: pointer;
   font-size: 1.1rem;
   user-select: none;
+  color: var(--muted);
   opacity: 0.6;
   transition: opacity .15s ease;
 }
@@ -123,14 +105,15 @@ body {
 /* Focus */
 .login-form input:focus {
   outline: none;
-  border-color: rgba(37,99,235,0.22);
+  border-color: var(--accent);
   box-shadow: 0 8px 30px rgba(37,99,235,0.06);
   transform: translateY(-1px);
 }
 
 /* Placeholder */
 .login-form input::placeholder {
-  color: #a9b0be;
+  color: var(--muted);
+  opacity: 0.7;
 }
 
 /* Button */
@@ -143,7 +126,7 @@ body {
   font-weight: 700;
   font-size: 1rem;
   color: #fff;
-  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  background: var(--accent);
   box-shadow: 0 10px 30px rgba(37,99,235,0.12);
   cursor: pointer;
   transition: transform .12s ease, box-shadow .12s ease;

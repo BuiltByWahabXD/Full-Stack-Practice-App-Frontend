@@ -52,24 +52,21 @@ export function AuthProvider({ children }) {
           const data = await response.json();
           console.log("Auth check data:", data);
           if (data.success) {
-
             setIsAuthenticated(true);
             localStorage.setItem("isAuthenticated", "true");
             
-            const userResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/users/me`, {
-              method: "GET",
-              headers: { 
-                "Accept": "application/json",
-              },
-              credentials: "include",
-            });
-            
-            if (userResponse.ok) {
-              const userData = await userResponse.json();
+            // Use apiFetch which handles token refresh automatically
+            try {
+              const userData = await apiFetch("/api/users/me");
               if (userData.success) {
                 setUser(userData.data);
                 console.log("User data loaded:", userData.data);
               }
+            } catch (error) {
+              console.error("Failed to load user data:", error);
+              // Even if /me fails, we're still authenticated if refresh worked
+              setIsAuthenticated(true);
+              localStorage.setItem("isAuthenticated", "true");
             }
           } else {
             setIsAuthenticated(false);
@@ -96,6 +93,30 @@ export function AuthProvider({ children }) {
 
     checkAuth();
   }, []);
+
+  // Auto-refresh tokens before they expire
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    // Refresh token every 50 seconds (before the 1 minute expiry)
+    const interval = setInterval(async () => {
+      try {
+        console.log("Auto-refreshing token...");
+        await fetch(`${import.meta.env.VITE_API_URL}/api/users/refresh`, {
+          method: "POST",
+          headers: { 
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          credentials: "include",
+        });
+      } catch (error) {
+        console.error("Auto-refresh failed:", error);
+      }
+    }, 50000); // 50 seconds
+
+    return () => clearInterval(interval);
+  }, [isAuthenticated]);
 
   const login = (userData) => {
     setUser(userData);
