@@ -8,7 +8,7 @@ const ProfilePage = () => {
     <div className="profile-container">
       <div className="profile-card">
         <h1 className="profile-title">👋 Hello {user?.name ? `, ${user.name}` : ""}!</h1>
-        <p className="profile-subtitle">You're Currently logged in. This is your profile page.</p>
+        <p className="profile-subtitle">You're Currently logged in, Details ⬇️</p>
 
         {user && (
           <div className="profile-infoBox">

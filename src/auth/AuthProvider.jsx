@@ -29,7 +29,6 @@ export function AuthProvider({ children }) {
       const storedAuth = localStorage.getItem("isAuthenticated");
       
       if (storedAuth !== "true") {
-        // User was not authenticated, skip the check
         setIsAuthenticated(false);
         setUser(null);
         setLoading(false);
@@ -51,7 +50,6 @@ export function AuthProvider({ children }) {
           localStorage.removeItem("isAuthenticated");
         }
       } catch (error) {
-        // If apiFetch fails even after refresh attempt, user needs to login
         console.log("Auth check error:", error);
         setIsAuthenticated(false);
         setUser(null);
@@ -64,11 +62,9 @@ export function AuthProvider({ children }) {
     checkAuth();
   }, []);
 
-  // Auto-refresh tokens before they expire
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    // Refresh token every 50 seconds (before the 1 minute expiry)
     const interval = setInterval(async () => {
       try {
         console.log("Auto-refreshing token...");

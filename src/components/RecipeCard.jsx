@@ -50,8 +50,10 @@ export default function RecipeCard({ title, subheader, image, body, avatarLetter
       sx={{ 
         maxWidth: 345,
         bgcolor: 'var(--card-bg)',
+        borderRadius: '12px',
+        outline: '5px solid var(--border-color)',
         color: 'var(--text-color)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 4px 12px rgba(22, 22, 22, 0.1)',
         transition: 'transform 0.2s ease, box-shadow 0.2s ease',
         '&:hover': {
           transform: 'translateY(-4px)',

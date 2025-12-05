@@ -12,7 +12,7 @@ const Homepage = () => {
           title="Nihari"
           subheader="South Asian Delight"
           image="/static/images/recipeImages/Nihari.jpg"
-          body="A delicious Spanish rice dish with seafood and spices."
+          body="A rich and flavorful stew made with slow-cooked meat and spices."
           avatarLetter="P"
           expandedContent="Nihari is a traditional South Asian stew consisting of slow-cooked meat, usually beef or lamb, simmered overnight with a blend of spices. It is typically enjoyed as a hearty breakfast dish, served with naan or rice."
         />
