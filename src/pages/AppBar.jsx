@@ -63,10 +63,10 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="black">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, ":hover": { color: 'yellowgreen' }}} />
           <Typography
             variant="h6"
             noWrap
@@ -81,7 +81,7 @@ function ResponsiveAppBar() {
               color: 'inherit',
               textDecoration: 'none',
               cursor: 'pointer',
-              ":hover": { color: 'black' }
+              ":hover": { color: 'yellowgreen' }
                
             }}
           >
